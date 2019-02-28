@@ -1,5 +1,5 @@
-FROM denismakogon/gocv-alpine:4.0.1-buildstage as build-stage
-FROM denismakogon/ffmpeg-alpine:4.0
+FROM esportsone/gocv-alpine:4.1.1-buildstage as build-stage
+FROM esportsone/ffmpeg-alpine:4.1.1-golang
 
 LABEL maintainer="Denis Makogon. mail: lildee1991@gmail.com"
 
@@ -40,4 +40,4 @@ ENV PKG_CONFIG_PATH /usr/local/lib64/pkgconfig
 ENV LD_LIBRARY_PATH /usr/local/lib64
 ENV CGO_CPPFLAGS -I/usr/local/include
 ENV CGO_CXXFLAGS "--std=c++1z"
-ENV CGO_LDFLAGS "-L/usr/local/lib -lopencv_core -lopencv_face -lopencv_videoio -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs -lopencv_objdetect -lopencv_features2d -lopencv_video -lopencv_dnn -lopencv_xfeatures2d -lopencv_plot -lopencv_tracking"
+ENV CGO_LDFLAGS "-L/usr/local/lib64 -lopencv_core -lopencv_face -lopencv_videoio -lopencv_imgproc -lopencv_highgui -lopencv_imgcodecs -lopencv_objdetect -lopencv_features2d -lopencv_video -lopencv_dnn -lopencv_xfeatures2d -lopencv_plot -lopencv_tracking"

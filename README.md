@@ -2,15 +2,15 @@
 
 ## What's in build-stage image?
 
- - Alpine 3.7
- - FFMPEG 4.0
- - Golang 1.10
+ - Alpine 3.9
+ - FFMPEG 4.1.1
+ - Golang 1.12
  - OpenCV 4.0.1
  - OpenCV 4.0.1 contrib packages required by GoCV
 
 ## What's in runtime image?
 
- - Alpine 3.7
+ - Alpine 3.9
  - Whatever you need there
 
 ## Purpose
@@ -21,16 +21,16 @@ This is a build image for the multi-stage image provisioning as well as runtime 
 
 Sample Docker file you can find [here](example/Dockerfile).
 
-## Build the runtime image
-
-```bash
-pushd runtime && docker build -t denismakogon/gocv-alpine:4.0.1-runtime .; popd
-```
-
 ## Build the build-stage image
 
 ```bash
 pushd build-stage && docker build -t denismakogon/gocv-alpine:4.0.1-buildstage .; popd
+```
+
+## Build the runtime image
+
+```bash
+pushd runtime && docker build -t denismakogon/gocv-alpine:4.0.1-runtime .; popd
 ```
 
 ## Test sample:

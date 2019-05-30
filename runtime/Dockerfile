@@ -16,9 +16,7 @@ ENV PKG="libstdc++ \
          libwebp \
          libwebp-dev \
          tiff \
-         jasper-libs \
          libavc1394 \
-         jasper-libs \
          openblas \
          libgphoto2 \
          gstreamer \

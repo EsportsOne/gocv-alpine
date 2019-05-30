@@ -2,7 +2,7 @@ FROM esportsone/ffmpeg-alpine:4.1.1-golang
 
 LABEL maintainer="Denis Makogon. mail: lildee1991@gmail.com"
 
-ENV OPENCV_VERSION=4.0.1
+ENV OPENCV_VERSION=4.1.0
 ENV BUILD="ca-certificates \
          git \
          build-base \
@@ -19,7 +19,6 @@ ENV BUILD="ca-certificates \
          libwebp-dev \
          tiff \
          libavc1394 \
-         jasper-libs \
          openblas \
          libgphoto2 \
          gstreamer \
@@ -28,7 +27,7 @@ ENV BUILD="ca-certificates \
 ENV DEV="clang clang-dev cmake pkgconf \
          openblas-dev gstreamer-dev gst-plugins-base-dev \
          libgphoto2-dev libjpeg-turbo-dev libpng-dev \
-         tiff-dev jasper-dev libavc1394-dev"
+         tiff-dev libavc1394-dev"
 
 
 RUN apk update && \
@@ -57,6 +56,7 @@ RUN mkdir /tmp/opencv && \
     -D BUILD_opencv_python=NO \
     -D BUILD_opencv_python2=NO \
     -D BUILD_opencv_python3=NO \
+    -D WITH_JASPER=OFF \
     -D OPENCV_GENERATE_PKGCONFIG=YES .. && \
     make -j4 && \
     make install && \

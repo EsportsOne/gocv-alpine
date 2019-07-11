@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.1.0
+jobs:
+  ci:
+    machine: true
+    steps:
+      - aws-ecr/ecr-login
+      - run:
+          name: Pull ffmpeg-alpine
+          command: |
+            docker pull ${ECR_URL}/esportsone/ffmpeg-alpine:4.1.1-golang
+            docker tag ${ECR_URL}/esportsone/ffmpeg-alpine:4.1.1-golang esportsone/ffmpeg-alpine:4.1.1-golang
+      - aws-ecr/build-and-push-image:
+          dockerfile: ./build-stage/Dockerfile
+          account-url: ECR_URL
+          repo: esportsone/gocv-alpine
+          tag: ${CIRCLE_SHA1}-buildstage
+      - aws-ecr/build-and-push-image:
+          dockerfile: ./runtime/Dockerfile
+          account-url: ECR_URL
+          repo: esportsone/gocv-alpine
+          tag: ${CIRCLE_SHA1}-runtime
+workflows:
+  version: 2
+  ci-cd:
+    jobs:
+      - ci:
+          context: ecr-staging 

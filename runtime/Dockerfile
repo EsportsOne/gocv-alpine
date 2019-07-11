@@ -1,4 +1,6 @@
-FROM esportsone/gocv-alpine:4.1.1-buildstage as build-stage
+ARG buildstage_image=1
+
+FROM ${buildstage_image} as build-stage
 FROM esportsone/ffmpeg-alpine:4.1.1-golang
 
 LABEL maintainer="Denis Makogon. mail: lildee1991@gmail.com"
